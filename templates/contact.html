@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Mystique {{ category.title|title }} {% endblock title %}
+
+{% block content %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>{{message.message}}</strong> 
+ 
+</div>
+{% endfor %}
+<style>
+    /* Custom CSS for contact form */
+    .contact-form {
+        max-width: 400px; /* Adjust the maximum width as desired */
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form h2 {
+        text-align: center;
+        color: #693a1e;
+    }
+
+    .contact-form label {
+        color: #693a1e;
+        font-weight: bold;
+    }
+
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea,
+    .contact-form input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .contact-form input[type="text"]:hover,
+    .contact-form input[type="email"]:hover,
+    .contact-form textarea:hover,
+    .contact-form input[type="number"]:hover {
+        border-color: #999;
+    }
+
+    .contact-form button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #693a1e;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .contact-form button[type="submit"]:hover {
+        background-color: #8c5433;
+    }
+</style>
+<!-- Page Add Section Begin -->
+<section class="page-add">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                
+                    <h3 class="text-center"style="color: #693a1e;">Contact Us</h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Page Add Section End -->
+
+<!-- Contact Section Begin -->
+<div class="contact-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form action="{% url 'contact' %}" method="post" class="contact-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        
+
+                        <div class="col-lg-12 py-2">
+                            <label for="name">Full Name</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control p-2" id="name" name="name" placeholder="Enter your name" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-12 py-2">
+                            <label for="email">Email</label>
+                            <div class="form-group">
+                                <input type="email" class="form-control p-2" id="email" name="email" value="" placeholder="Enter your email address" required />
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-12 my-3 text-center">
+                            <label for="desc">How Can We Help You?</label>
+                            <div class="form-group">
+                                <textarea class="form-control p-2" id="desc" name="desc" required placeholder="Write your feedback"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 py-2">
+                        <label for="pnumber">Phone Number</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control p-2" id="pnumber" name="pnumber" placeholder="Enter a phone number" required />
+                        </div>
+                    </div>
+                        <div class="col-lg-12 text-right">
+                            <button type="submit" class="btn btn-dark">Submit</button>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

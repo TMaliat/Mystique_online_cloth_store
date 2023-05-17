@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title %} Mystique Home {% endblock title %}
+
+{% block content %}
+
+{% include 'slider.html' %}
+
+
+
+<!-- Featured Category Begin -->
+<section class="latest-products spad mt-5">
+    <div class="container">
+        <div class="product-filter">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Featured Categories</h2>
+                    </div>
+                    <ul class="product-controls">
+                        <li data-filter="*">All</li>
+                        {% for category in featured_categories %}
+                        <li data-filter=".{{category.slug}}">{{category.title|title}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="product-list">
+            {% for category in featured_categories %}
+            {% for product in category.products.all %}
+            <div class="col-lg-3 col-sm-6 mix {{category.slug}}">
+
+                <div class="single-product-item">
+                    <figure>
+                        <a href="{% url 'product-details' product.slug %}"><img style="height:300px "src="/media/{{product.thumbnail}}" alt=""></a>
+                        <div class="p-status">{{product.category}}</div>
+                    </figure>
+                    <div class="product-text">
+                        <a class="text-decoration-none" href="{% url 'product-details' product.slug %}">
+                            <h6>{{product.title|truncatewords:7}}</h6>
+                        </a>    
+                        <p>${{product.price}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %%}
+            {% endfor %%}
+            
+        </div>
+    </div>
+</section>
+<!-- Featured Category End -->
+
+
+<!-- Featured Product Begin -->
+<section class="latest-products spad">
+    <div class="container">
+        <div class="product-filter">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Featured Products</h2>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row" id="product-list">
+            {% for product in featured_products %}
+            <div class="col-lg-3 col-sm-6 mix ">
+
+                <div class="single-product-item">
+                    <figure>
+                        <a href="{% url 'product-details' product.slug %}"><img style="height:300px "src="/media/{{product.thumbnail}}" alt=""></a>
+                        <div class="p-status">{{product.category}}</div>
+                    </figure>
+                    <div class="product-text">
+                        <a class="text-decoration-none" href="{% url 'product-details' product.slug %}">
+                            <h6>{{product.title|truncatewords:7}}</h6>
+                        </a>
+                        <p>${{product.price}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %%}
+            
+        </div>
+    </div>
+</section>
+<!-- Featured Product End -->
+
+<!-- About Begin -->
+<section class="lookbok-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 offset-lg-1">
+                <div class="lookbok-left">
+                    <div class="section-title">
+                        <h2>About <br /></h2><h3>Your Look</h3>
+                    </div>
+                    <p>Discover the essence of ethnic fashion at Mystique. Unleash your style with vibrant hues and exquisite designs. Embrace tradition and modernity in a kaleidoscope of elegance. Step into our virtual realm and ignite your inner fashionista. Elevate your wardrobe with captivating ethnic wear that celebrates diversity.</p>
+                    <a href="#" class="primary-btn look-btn">See More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-1">
+                <div class="lookbok-pic">
+                    <img style="height:800px;width:350px;" src="{% static 'img/about.jpg' %}" alt="">
+                    <div class="pic-text">fashion</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About End -->
+   <!-- About Service Begin -->
+   <section class="features-section spad">
+    <div class="features-ads">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-features-ads first">
+                        <img src="{% static 'img/icons/f-delivery.png' %}" alt="">
+                        <h4>Free shipping</h4>
+                        <p>No need to break the bank on shipping fees! Explore our stylish clothing line and take advantage of our complimentary shipping on all orders. </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-features-ads second">
+                        <img src="{% static 'img/icons/coin.png' %}" alt="">
+                        <h4>100% Money back </h4>
+                        <p>No risk, all reward! Love it or get your money back - our online clothing store proudly offers a 100% satisfaction guarantee. </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-features-ads">
+                        <img src="{% static 'img/icons/chat.png' %}" alt="">
+                        <h4>Online support 24/7</h4>
+                        <p>Need help? We've got you covered day and night. Experience peace of mind with our 24/7 online support, ready to assist you with any inquiries or concerns. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- About Service End -->
+    <!-- Customers' Diary Box -->
+    <div class="features-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="single-box-item first-box">
+                                <img src="{% static 'img/customer3.jpg' %}" alt="">
+                                <div class="box-text">
+                                    <span class="trend-year">2023 Festive</span>
+                                    <h2>Customer</h2>
+                                    <span class="trend-alert">Diary</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="single-box-item large-box">
+                        <img src="{% static 'img/f-box-3.jpg' %}" alt="">
+                        <div class="box-text">
+                            <span class="trend-year">2023 Trend</span>
+                            <h2>Customer</h2>
+                            <div class="trend-alert">Trend Alert</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Customers' Diary End -->
+<!-- Logo Section Begin -->
+
+
+
+{% endblock content %}

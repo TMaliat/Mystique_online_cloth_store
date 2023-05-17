@@ -1,0 +1,84 @@
+{% load static %} 
+ <!-- Header Section Begin -->
+ <header class="header-section">
+    <div class="container-fluid">
+        <div class="inner-header">
+            <div class="logo"style="margin-top: -15px;">
+                <a href="/" class="logo-link">
+                    <img src="{% static 'img/logo2.png' %}" alt="" class="logo-img">
+                </a>
+                <a href="/" class="website-name">Mystique</a>
+            </div>
+            
+              
+    
+            <div class="header-right">
+                <img src="{% static 'img/icons/search.png' %}" alt="" class="search-trigger">
+                <a href="{% url 'cart' %}">
+                    <img src="{% static 'img/icons/bag.png' %}" alt="">
+                    <span>{{cart|length}}</span>
+                </a>
+            </div>
+            {% if not request.user.is_authenticated %}
+            <div class="user-access">
+                <a href="{% url 'registration' %}">Register</a>
+                <a href="{% url 'login' %}" class="in">Sign in</a>
+            </div>
+            {% endif %}
+            <nav class="main-menu mobile-menu">
+                <ul>
+                    <li><a class="" href="{% url 'home' %}">Home</a></li>
+                    <li><a class="" href="{% url 'product-list' %}">Product</a></li>
+                    <li><a href="#">Category</a>
+                        <ul class="sub-menu">
+                            {% for category in categories %}
+                            <li><a href="{% url 'category-details' category.slug %}">{{category.title|title}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li><a class="" href="{% url 'contact' %}">Contact</a></li>
+                    {% if request.user.is_authenticated %}
+                    <li><a href="#">
+                        Hello, {{ request.user.username }}
+                    </a>
+                        <ul class="sub-menu">
+                            <li><a class="" href="{% url 'profile' %}">Profile</a></li>
+                            <li><a class="" href="{% url 'orders' %}">Orders</a></li>
+                            <li><a class="" href="{% url 'change_password' %}">Change Password</a></li>
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                    
+                    {% endif %}
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header> 
+
+<style>
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo-img {
+        max-width: 80px;
+        height: auto;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-top: -10px;
+    }
+    
+    .website-name {
+        font-weight: bold;
+        font-size: 24px;
+        color: black;
+        margin-top: 8px;
+    }
+    .website-name:hover {
+        color: grey;
+    }
+
+</style>

@@ -1,0 +1,11 @@
+{% load static %}
+<div class="search-model bg-white">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch">+</div>
+        <img class="img-fluid" src="{% static 'img/search.png' %}" style="width:200px;" alt="no-result">
+        <form class="search-model-form" method="GET" action="{% url 'search-products' %}">
+            <h2> Search Your Items Here... <h2>
+            <input name="key" type="text" style="font-size: 24px;" id="search-input" placeholder="Enter product name or category">
+        </form>
+    </div>
+</div> 
